@@ -7,6 +7,48 @@ const navBarIcon = document.querySelector('.rel-nav .bar-icon svg');
 const logoSide = document.querySelector('div.logo__side');
 const overlay = document.getElementById('overlay');
 
+document.addEventListener('DOMContentLoaded', () => {
+    const inputField = document.getElementById('prompt__deepseek');
+    const formContainer = document.querySelector('.form_container');
+    const disclaim = document.querySelector('.prompt__disclaim');
+    const formm = document.querySelector('.form_container');
+    const welcomeMessageElement = document.querySelector("main div.head");
+
+    // دالة لتطبيق التأثير
+    const applyFocusEffect = () => {
+        formContainer.classList.add('form--focus--effect');
+        formContainer.classList.remove('form--chat--active');
+        disclaim.classList.add('disclaim--focus--effect');
+        formm.classList.add('form--focus');
+        welcomeMessageElement.classList.add("hide-header");
+    };
+
+    // دالة لإزالة التأثير
+    const removeFocusEffect = () => {
+        formContainer.classList.remove('form--focus--effect');
+        formContainer.classList.add('form--chat--active');
+        formm.classList.remove('form--focus');
+        // welcomeMessageElement.classList.remove("hide-header");
+    };
+
+    // حدث التركيز
+    inputField.addEventListener('focus', () => {
+        applyFocusEffect();
+    });
+
+    // حدث فقدان التركيز
+    inputField.addEventListener('blur', () => {
+        removeFocusEffect();
+    });
+
+    // حدث الكتابة (لتأكيد أن الحقل لا يزال في حالة التركيز)
+    inputField.addEventListener('input', () => {
+        if (document.activeElement === inputField) {
+            applyFocusEffect();
+        }
+    });
+});
+
 sideBar.addEventListener('click', () => {
     const isSide = side.classList.contains('sidebar__hidden');
     // const isSideMob = navBar;
