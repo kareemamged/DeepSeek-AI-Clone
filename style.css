@@ -1074,7 +1074,9 @@ td {
         height: 130px;
         width: 120%;
     }
-
+    .form_container.form--focus {
+        margin-bottom: 100px;
+    }
 
     .form_container.form--chat--active {
         position: fixed;
@@ -1087,6 +1089,20 @@ td {
         position: fixed;
         bottom: -230px;
         transition: all 0.3s ease;
+    }
+
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    }
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
     }
 
     .deepthink__btn,
@@ -1104,6 +1120,7 @@ td {
     }
 
     .head {
+        /* position: fixed; */
         width: 140%;
     }
 
