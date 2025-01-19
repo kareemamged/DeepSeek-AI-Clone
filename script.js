@@ -10,9 +10,11 @@ const overlay = document.getElementById('overlay');
 document.addEventListener('DOMContentLoaded', () => {
     const inputField = document.getElementById('prompt__deepseek');
     const formContainer = document.querySelector('.form_container');
+    const isChat = formContainer.classList.includes('form--chat--active');
     const disclaim = document.querySelector('.prompt__disclaim');
     const formm = document.querySelector('.form_container');
     const welcomeMessageElement = document.querySelector("main div.head");
+    const visibleChat = document.querySelector("main .chats .message--incoming");
 
     // دالة لتطبيق التأثير
     const applyFocusEffect = () => {
@@ -28,12 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
         formContainer.classList.remove('form--focus--effect');
         formContainer.classList.add('form--chat--active');
         formm.classList.remove('form--focus');
-        // welcomeMessageElement.classList.remove("hide-header");
+        if(isChat) {
+            welcomeMessageElement.classList.add("hide-header");
+        } else {
+            welcomeMessageElement.classList.remove("hide-header");
+        }
     };
 
     // حدث التركيز
     inputField.addEventListener('focus', () => {
         applyFocusEffect();
+    });
+
+    inputField.addEventListener('focusin', () => {
+        applyFocusEffect();
+    });
+
+    inputField.addEventListener('focusout', () => {
+        removeFocusEffect();
     });
 
     // حدث فقدان التركيز
@@ -47,6 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
             applyFocusEffect();
         }
     });
+
+    if(inputField.value.length > 0) {
+        applyFocusEffect();
+    } else {
+        removeFocusEffect();
+    }
 });
 
 sideBar.addEventListener('click', () => {
