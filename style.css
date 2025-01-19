@@ -945,6 +945,20 @@ td {
         transition: all 0.3s ease;
     }
 
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    }
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
+    }
+
     .deepthink__btn,
     .search__new {
         font-size: 15px;
@@ -1256,6 +1270,20 @@ td {
         transition: all 0.3s ease;
     }
 
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    }
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
+    }
+
     .deepthink__btn,
     .search__new {
         font-size: 15px;
@@ -1401,6 +1429,20 @@ td {
         position: fixed;
         bottom: -320px;
         transition: all 0.3s ease;
+    }
+
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    }
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
     }
 
     .deepthink__btn,
@@ -1784,6 +1826,20 @@ td {
         width: 130%;
         transform: translate(0%, 370%);
     }
+
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    }
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
+    }
 }
 
 /* الأجهزة اللوحية */
@@ -1927,6 +1983,20 @@ td {
         height: 130px;
         width: 130%;
         transform: translate(0%, 250%);
+    }
+
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    }
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
     }
 
 }
