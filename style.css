@@ -2019,16 +2019,16 @@ td {
         transform: translate(-100%);
         position: absolute;
         top: 0;
-        /* z-index: -601; */
+        z-index: 801;
+        height: 105vh;
         width: 280px;
-        /* transition: z-index 1s ease; */
     }
 
     .sidebar {
         position: fixed;
         top: 0;
         width: 5%;
-        height: 100vh;
+        height: 105vh;
         z-index: 600;
     }
 
@@ -2112,7 +2112,7 @@ td {
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: 105vh;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: -799;
         opacity: 0;
