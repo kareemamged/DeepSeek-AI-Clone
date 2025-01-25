@@ -793,33 +793,34 @@ code {
 
 main .chats .message__text .msgg p {
     width: 100%;
+    margin-bottom: -80px;
 }
 
-a {
+main .chats .message__text .msgg a {
     color: #1e90ff;
     text-decoration: none;
 }
 
-ul {
+main .chats .message__text .msgg ul {
     list-style: disc inside;
     margin-left: 35px;
     width: 100%;
 }
 
-ol {
+main .chats .message__text .msgg ol {
     margin-left: 40px;
 }
 
-strong {
+main .chats .message__text .msgg strong {
     font-weight: bold;
 }
 
-em {
+main .chats .message__text .msggem {
     font-style: italic;
 }
 
-th,
-td {
+main .chats .message__text .msgg th,
+main .chats .message__text .msgg td {
     border: 1px solid;
     text-align: left;
     padding: 10px;
