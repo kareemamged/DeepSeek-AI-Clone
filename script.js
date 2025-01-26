@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formContainer.classList.remove('form--focus--effect');
         formContainer.classList.add('form--chat--active');
         formm.classList.remove('form--focus');
-        if(isChat) {
+        if (isChat) {
             welcomeMessageElement.classList.add("hide-header");
         } else {
             welcomeMessageElement.classList.remove("hide-header");
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    if(inputField.value.length > 0) {
+    if (inputField.value.length > 0) {
         applyFocusEffect();
     } else {
         removeFocusEffect();
@@ -74,6 +74,8 @@ sideBar.addEventListener('click', () => {
     // const isSideMob = navBar;
     if (isSide) {
         navBar.classList.add('nav__hidden');
+        const FormSection = document.querySelector(".form_container");
+        FormSection.classList.add('form--nav--active')
         side.classList.remove('sidebar__hidden');
     }
     if (navBar.style.transform === 'translate(-100%)') {
@@ -342,14 +344,7 @@ messageForm.addEventListener('submit', async (e) => {
     stopButton.style.zIndex = '-1';
 
     const welcomeMessageElement = document.querySelector("main div.head");
-    const mainContent = document.querySelector("main");
-    const formContainer = document.querySelector(".form_container");
-    const instructions = document.querySelector("main p.prompt__disclaim");
-    const chats = document.querySelector("main .chats");
-
     welcomeMessageElement.classList.add("hide-header");
-    formContainer.classList.add("form--chat--active");
-    instructions.classList.add("disclaim--chat--active");
     // chats.classList.add("chat--chat--active");
     // mainContent.classList.add("edit--nav_fixed");
     // navBar.classList.add('fixed');
