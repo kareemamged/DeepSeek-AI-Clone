@@ -721,7 +721,7 @@ main .chats .message--error .message__text {
     /* لون نص الخطأ */
 }
 
-pre {
+main .chats .message__text .msgg pre {
     background-color: #50505a;
     padding: 0;
     border-radius: 1rem;
@@ -729,10 +729,11 @@ pre {
     white-space: pre-wrap;
     position: relative;
     padding-top: 50px;
-    width: 140%;
+    width: 110%;
+    margin-top: -40px;
 }
 
-code {
+main .chats .message__text .msgg code {
     font-family: 'Courier New', Courier, monospace;
     font-size: 22px;
     color: #d4d4d4;
@@ -793,7 +794,6 @@ code {
 
 main .chats .message__text .msgg p {
     width: 100%;
-    margin-bottom: 0px;
 }
 
 main .chats .message__text .msgg a {
@@ -805,7 +805,11 @@ main .chats .message__text .msgg ul {
     list-style: disc inside;
     margin-left: 35px;
     width: 100%;
-    margin-top: -60px;
+    margin-top: -50px;
+}
+
+main .chats .message__text .msgg li {
+    margin-block: -15px;
 }
 
 main .chats .message__text .msgg ol {
@@ -816,7 +820,7 @@ main .chats .message__text .msgg strong {
     font-weight: bold;
 }
 
-main .chats .message__text .msggem {
+main .chats .message__text .msgg em {
     font-style: italic;
 }
 
@@ -872,6 +876,8 @@ main .chats .message__text .msgg td {
 
 
 
+
+
 @media (max-width: 375px) {
     body {
         width: 100%;
@@ -897,8 +903,11 @@ main .chats .message__text .msgg td {
         position: fixed;
         top: 0;
         padding: 15px;
-
+        z-index: 9;
+        background-color: #292A2D;
+        height: 7%;
     }
+
 
     .rel-nav svg {
         color: rgb(205, 212, 223);
@@ -917,10 +926,10 @@ main .chats .message__text .msgg td {
     }
 
     .prompt__deepseek input {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-bottom: -10px;
-        width: 100%;
-        height: 70px;
+        /* width: 100%; */
+        height: 60px;
     }
 
     .head .divO svg {
@@ -929,32 +938,20 @@ main .chats .message__text .msgg td {
     }
 
     .form_container {
-        height: 130px;
-        width: 120%;
-    }
-
-
-    .form_container.form--chat--active {
+        height: 95px;
+        width: 95%;
+        /* padding-right: 200px; */
         position: fixed;
-        bottom: -170px;
-        transition: all 0.3s ease;
+        bottom: 9%;
+        left: 2.5%;
     }
 
-    .prompt__disclaim.disclaim--chat--active {
-        font-size: 0.8rem;
+    .prompt__disclaim {
+        font-size: 0.6rem;
         position: fixed;
-        bottom: -199px;
-        transition: all 0.3s ease;
-    }
-
-    .form_container.form--focus--effect {
-        bottom: -120px;
-        position: fixed;
-        transition: all 0.3s ease;
-    }
-
-    .prompt__disclaim.disclaim--focus--effect {
-        display: none;
+        bottom: 1%;
+        left: 30%;
+        margin-top: 1rem;
     }
 
     .head.head--focus--effect {
@@ -967,10 +964,6 @@ main .chats .message__text .msgg td {
     }
 
     .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
         width: 100%;
         height: 100vh;
 
@@ -978,180 +971,30 @@ main .chats .message__text .msgg td {
 
     .head {
         width: 140%;
-    }
-
-    .head .main {
-        font-size: 1.3rem;
-        margin-left: 20px;
-        margin-right: -40px;
-    }
-
-    .head .sub {
-        color: #f8faff;
-        font-size: 14px;
-    }
-
-    div.prompt__btn button {
-        width: 40px;
-        height: 40px;
-    }
-
-    .divC {
-        margin-bottom: 15px;
-    }
-
-    #overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: -999;
-        opacity: 0;
-        transition: opacity 0.3s ease, z-index 0.6s ease;
-    }
-
-    .clickOptions {
-        transform: scale(.7);
-    }
-
-    main .chats {
-        max-height: 88vh;
-        width: 120%;
-        transform: scale(1.1);
-        top: -100px;
-        left: -50px;
-    }
-
-    main .chats .message--incoming {
-        width: 100%;
-    }
-}
-
-
-@media (min-width: 375px) and (max-width: 414px) {
-    body {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .main {
-        margin-top: 70px;
-    }
-
-    nav {
-        transform: translate(-100%);
-        position: absolute;
-        top: 0;
-        z-index: 1000;
-        width: 280px;
-    }
-
-    .rel-nav {
-        width: 100%;
-        position: fixed;
-        top: 0;
-        padding: 15px;
-
-    }
-
-    .rel-nav svg {
-        color: rgb(205, 212, 223);
-        width: 30px;
-        cursor: pointer;
-    }
-
-    .rel-nav .contain {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    .prompt__deepseek input {
-        font-size: 1.2rem;
-        margin-bottom: -10px;
-        width: 100%;
-        height: 70px;
-    }
-
-    .head .divO svg {
-        width: 80px;
-        margin-bottom: -55px;
-    }
-
-    .form_container {
-        height: 130px;
-        width: 120%;
-    }
-    .form_container.form--focus {
-        margin-bottom: 100px;
-    }
-
-    .form_container.form--chat--active {
-        position: fixed;
-        bottom: -200px;
-        transition: all 0.3s ease;
-    }
-
-    .prompt__disclaim.disclaim--chat--active {
-        font-size: 0.8rem;
-        position: fixed;
-        bottom: -230px;
-        transition: all 0.3s ease;
-    }
-
-    .form_container.form--focus--effect {
-        bottom: -120px;
-        position: fixed;
-        transition: all 0.3s ease;
-    }
-
-    .prompt__disclaim.disclaim--focus--effect {
-        display: none;
-    }
-
-    .head.head--focus--effect {
-        bottom: -20px !important;
-    }
-
-    .deepthink__btn,
-    .search__new {
-        font-size: 15px;
-    }
-
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        height: 100vh;
-    }
-
-    .head {
-        /* position: fixed; */
-        width: 140%;
+        margin-left: -30px;
     }
 
     .head .main {
         font-size: 1.5rem;
+        margin-left: 25px;
     }
 
     .head .sub {
         color: #f8faff;
         font-size: 17px;
+        margin-left: -50px;
     }
 
     div.prompt__btn button {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .prompt__btn {
+        position: relative;
+        /* top: 0; */
+        /* margin: 0 50px 100px 0; */
+        transform: translate(10%, -110%);
     }
 
     .divC {
@@ -1175,19 +1018,18 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 86.3vh;
-        width: 120%;
-        transform: scale(1.1);
-        top: -100px;
-        left: -50px;
-        overflow-x: hidden;
+        max-height: 120vh;
+        width: 150%;
+        transform: scale(.9);
+        top: -30%;
+        left: -25%;
     }
 
-    pre {
+    main .chats .message__text .msgg pre {
         width: 100%;
     }
 
-    code {
+    main .chats .message__text .msgg code {
         font-size: 17px;
     }
 
@@ -1197,7 +1039,7 @@ main .chats .message__text .msgg td {
 }
 
 
-@media (min-width: 414px) and (max-width: 440px) {
+@media (min-width: 376px) and (max-width: 413px) {
     body {
         width: 100%;
         height: 100%;
@@ -1215,6 +1057,7 @@ main .chats .message__text .msgg td {
         top: 0;
         z-index: 1000;
         width: 280px;
+        height: 130%;
     }
 
     .rel-nav {
@@ -1222,15 +1065,18 @@ main .chats .message__text .msgg td {
         position: fixed;
         top: 0;
         padding: 15px;
-
+        z-index: 9;
+        background-color: #292A2D;
+        height: 7%;
     }
+
 
     .rel-nav svg {
         color: rgb(205, 212, 223);
         width: 30px;
         cursor: pointer;
     }
-
+    
     .rel-nav .contain {
         display: flex;
         justify-content: space-between;
@@ -1255,13 +1101,25 @@ main .chats .message__text .msgg td {
 
     .form_container {
         height: 130px;
-        width: 120%;
+        width: 97%;
+        position: fixed;
+        bottom: 5%;
+        left: 1.5%;
+    }
+
+    .prompt__disclaim {
+        font-size: 0.6rem;
+        position: fixed;
+        bottom: 1%;
+        left: 36%;
+        margin-top: 1rem;
     }
 
 
-    .form_container.form--chat--active {
+    /* .form_container.form--chat--active {
         position: fixed;
-        bottom: -290px;
+        bottom: -180px;
+        left: -40px;
         transition: all 0.3s ease;
     }
 
@@ -1280,7 +1138,7 @@ main .chats .message__text .msgg td {
 
     .prompt__disclaim.disclaim--focus--effect {
         display: none;
-    }
+    } */
 
     .head.head--focus--effect {
         bottom: -20px !important;
@@ -1299,6 +1157,7 @@ main .chats .message__text .msgg td {
 
     .head {
         width: 140%;
+        margin-left: -15%;
     }
 
     .head .main {
@@ -1324,7 +1183,7 @@ main .chats .message__text .msgg td {
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: 120vh;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: -999;
         opacity: 0;
@@ -1336,18 +1195,199 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 85vh;
-        width: 120%;
-        transform: scale(1.1);
-        top: -100px;
-        left: -50px;
+        max-height: 110vh;
+        width: 150%;
+        transform: scale(.9);
+        top: -32%;
+        left: -25%;
     }
 
-    pre {
+    main .chats .message__text .msgg pre {
         width: 100%;
     }
 
-    code {
+    main .chats .message__text .msgg code {
+        font-size: 17px;
+    }
+
+    main .chats .message--incoming {
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 414px) and (max-width: 439px) {
+    body {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .main {
+        margin-top: 70px;
+    }
+
+    nav {
+        transform: translate(-100%);
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+        width: 280px;
+        height: 113vh;
+    }
+
+    .rel-nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        padding: 15px;
+        z-index: 9;
+        background-color: #292A2D;
+        height: 7%;
+    }
+
+    .rel-nav svg {
+        color: rgb(205, 212, 223);
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .rel-nav .contain {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .prompt__deepseek input {
+        font-size: 1.2rem;
+        margin-bottom: -10px;
+        width: 100%;
+        height: 70px;
+    }
+
+    .prompt__btn {
+        position: relative;
+        transform: translate(0, -30%);
+    }
+
+    .head .divO svg {
+        width: 80px;
+        margin-bottom: -55px;
+    }
+
+    .form_container {
+        height: 130px;
+        width: 97%;
+        position: fixed;
+        bottom: 5%;
+        left: 1.5%;
+    }
+
+    .prompt__disclaim {
+        font-size: 0.6rem;
+        position: fixed;
+        bottom: 1%;
+        left: 36%;
+        margin-top: 1rem;
+    }
+
+
+    /* .form_container.form--chat--active {
+        position: fixed;
+        bottom: -180px;
+        left: -40px;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--chat--active {
+        font-size: 0.8rem;
+        position: fixed;
+        bottom: -320px;
+        transition: all 0.3s ease;
+    }
+
+    .form_container.form--focus--effect {
+        bottom: -120px;
+        position: fixed;
+        transition: all 0.3s ease;
+    }
+
+    .prompt__disclaim.disclaim--focus--effect {
+        display: none;
+    } */
+
+    .head.head--focus--effect {
+        bottom: -20px !important;
+    }
+
+    .deepthink__btn,
+    .search__new {
+        font-size: 15px;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+
+    }
+
+    .head {
+        width: 140%;
+        margin-left: -15%;
+    }
+
+    .head .main {
+        font-size: 1.5rem;
+    }
+
+    .head .sub {
+        color: #f8faff;
+        font-size: 17px;
+    }
+
+    div.prompt__btn button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .divC {
+        margin-bottom: 15px;
+    }
+
+    #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -999;
+        opacity: 0;
+        transition: opacity 0.3s ease, z-index 0.6s ease;
+    }
+
+    .clickOptions {
+        transform: scale(.7);
+    }
+
+    main .chats {
+        max-height: 125vh;
+        width: 150%;
+        transform: scale(.9);
+        top: -26%;
+        left: -25%;
+    }
+
+    main .chats .message__text .msgg pre {
+        width: 100%;
+    }
+
+    main .chats .message__text .msgg code {
         font-size: 17px;
     }
 
@@ -1381,7 +1421,9 @@ main .chats .message__text .msgg td {
         position: fixed;
         top: 0;
         padding: 15px;
-
+        z-index: 9;
+        background-color: #292A2D;
+        height: 7%;
     }
 
     .rel-nav svg {
@@ -1420,7 +1462,7 @@ main .chats .message__text .msgg td {
 
     .form_container.form--chat--active {
         position: fixed;
-        bottom: -180px;
+        bottom: -300px;
         /* right: 0px; */
         left: -50px;
         transition: all 0.3s ease;
@@ -1429,7 +1471,8 @@ main .chats .message__text .msgg td {
     .prompt__disclaim.disclaim--chat--active {
         font-size: 0.8rem;
         position: fixed;
-        bottom: -320px;
+        bottom: -325px;
+        left: 150px;
         transition: all 0.3s ease;
     }
 
@@ -1498,18 +1541,18 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 85vh;
+        max-height: 95vh;
         width: 120%;
         transform: scale(1.1);
         top: -100px;
         left: -50px;
     }
 
-    pre {
+    main .chats .message__text .msgg pre {
         width: 100%;
     }
 
-    code {
+    main .chats .message__text .msgg code {
         font-size: 17px;
     }
 
@@ -1712,7 +1755,7 @@ main .chats .message__text .msgg td {
         width: 280px;
     }
 
-        #overlay {
+    #overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -1819,7 +1862,7 @@ main .chats .message__text .msgg td {
     .prompt__disclaim.disclaim--chat--active {
         font-size: 0.85rem;
         position: fixed;
-        bottom: -320px;
+        bottom: -315px;
         margin-top: 1rem;
     }
 
@@ -1866,6 +1909,16 @@ main .chats .message__text .msgg td {
         width: 280px;
     }
 
+    .rel-nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        padding: 15px;
+        z-index: 9;
+        background-color: #292A2D;
+        height: 7%;
+    }
+
     #overlay {
         position: absolute;
         top: 0;
@@ -1880,13 +1933,6 @@ main .chats .message__text .msgg td {
 
     .clickOptions {
         transform: scale(.7);
-    }
-
-    .rel-nav {
-        width: 100%;
-        position: fixed;
-        top: 0;
-        padding: 15px;
     }
 
     .rel-nav svg {
@@ -1918,8 +1964,11 @@ main .chats .message__text .msgg td {
     }
 
     .form_container {
-        min-height: 180px;
-        width: 100%;
+        min-height: 150px;
+        width: 90%;
+        position: fixed;
+        bottom: 60px;
+        left: 5%;
     }
 
     .deepthink__btn,
@@ -1966,36 +2015,46 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 83vh;
-        width: 110%;
-        transform: scale(1.2);
+        max-height: 102vh;
+        width: 140%;
+        transform: scale(1);
         position: absolute;
-        top: -70px;
-        left: -30px;
+        top: -20%;
+        left: -20%;
+        overflow-x: hidden;
     }
 
-    .prompt__disclaim.disclaim--chat--active {
+    main .chats .message--incoming {
+        width: 100%;
+    }
+
+    p.message__text {
+        font-size: 20px;
+    }
+
+    .prompt__disclaim {
         font-size: 0.85rem;
         position: fixed;
-        bottom: -315px;
+        bottom: 3%;
+        left: 38%;
         margin-top: 1rem;
     }
 
-    .form_container.form--chat--active {
+    /* .form_container.form--chat--active {
         height: 130px;
         width: 130%;
-        transform: translate(0%, 250%);
-    }
+        transform: translate(0%, 400%);
+    } */
 
-    .form_container.form--focus--effect {
+    /* .form_container.form--focus--effect {
         bottom: -120px;
         position: fixed;
         transition: all 0.3s ease;
-    }
+    } */
 
-    .prompt__disclaim.disclaim--focus--effect {
+    /* .prompt__disclaim.disclaim--focus--effect {
         display: none;
-    }
+    } */
 
     .head.head--focus--effect {
         bottom: -20px !important;
@@ -2036,7 +2095,7 @@ main .chats .message__text .msgg td {
 
     .rel-nav {
         width: 100%;
-        position: abslute;
+        position: absolute;
         top: 0;
         z-index: -500;
     }
@@ -2055,9 +2114,11 @@ main .chats .message__text .msgg td {
     }
 
     .form_container {
-        min-height: 180px;
-        width: 100%;
-        margin-left: 130px;
+        min-height: 150px;
+        width: 90%;
+        position: fixed;
+        bottom: 60px;
+        left: 8%;
     }
 
     .deepthink__btn,
@@ -2123,35 +2184,26 @@ main .chats .message__text .msgg td {
 
 
     main .chats {
-        max-height: 83vh;
+        max-height: 70vh;
         width: 100%;
         transform: scale(1.2);
         position: absolute;
-        top: -200px;
-        left: 30px;
+        top: -25%;
+        left: 4%;
     }
 
     .prompt__disclaim {
-        margin-left: 100px;
-    }
-
-    .prompt__disclaim.disclaim--chat--active {
         font-size: 0.85rem;
         position: fixed;
-        bottom: -220px;
-        left: 330px;
+        bottom: 3%;
+        left: 45%;
         margin-top: 1rem;
     }
 
-    .form_container.form--chat--active {
-        height: 130px;
-        width: 105%;
-        transform: translate(-2%, 200%);
-    }
 }
 
 /* الشاشات العريضة */
-@media (min-width: 1200px) and (max-width: 1399.98px) {
+@media (min-width: 1200px) and (max-width: 2560px) {
     body {
         font-size: 20px;
         width: 100%;
@@ -2160,6 +2212,19 @@ main .chats .message__text .msgg td {
         z-index: -500;
         overflow: hidden;
     }
+
+    /* nav {
+        z-index: 10;
+        transform: translate(-100%);
+        position: fixed;
+        top: 0;
+    } */
+
+    /* div.sidebar__hidden {
+        position: fixed;
+        z-index: -10;
+        top: 0;
+    } */
 
     .rel-nav {
         display: none;
@@ -2173,6 +2238,7 @@ main .chats .message__text .msgg td {
 
     .head {
         width: 110%;
+        transition: all .3s ease;
     }
 
     .head svg {
@@ -2194,8 +2260,20 @@ main .chats .message__text .msgg td {
     } */
 
     .form_container {
-        height: 180px;
-        transform: scale(1.1);
+        min-height: 150px;
+        width: 75%;
+        position: fixed;
+        bottom: 9%;
+        left: 22.5%;
+    }
+
+    .form_container.form--nav--active {
+        min-height: 150px;
+        width: 85%;
+        position: fixed;
+        bottom: 9%;
+        left: 11%;
+        transition: all .3s ease;
     }
 
     /* .form_container.form--chat--active {
@@ -2212,24 +2290,19 @@ main .chats .message__text .msgg td {
     } */
 
     main .chats {
-        max-height: 71vh;
-        width: 85%;
-        transform: scale(1.375);
-        top: -230px;
-        left: 100px;
+        max-height: 75vh;
+        width: 100%;
+        transform: scale(1.2);
+        position: absolute;
+        top: -450px;
+        left: 20px;
     }
-    
-    .form_container.form--chat--active {
-        height: 200px;
-        width: 120%;
-        transform: translate(-7%, 160%);
-    }
-    
-    .prompt__disclaim.disclaim--chat--active {
-        font-size: 1rem;
+
+    .prompt__disclaim {
+        font-size: 0.85rem;
         position: fixed;
+        bottom: 3%;
+        left: 45%;
         margin-top: 1rem;
-        transform: translate(200%, 1020%);
     }
 }
-
