@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const disclaim = document.querySelector('.prompt__disclaim');
     const formm = document.querySelector('.form_container');
     const welcomeMessageElement = document.querySelector("main div.head");
-    const visibleChat = document.querySelector("main .chats .message--incoming");
+    // const visibleChat = document.querySelector("main .chats .message--incoming");
 
-    // دالة لتطبيق التأثير
     const applyFocusEffect = () => {
         formContainer.classList.add('form--focus--effect');
         formContainer.classList.remove('form--chat--active');
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         welcomeMessageElement.classList.add("hide-header");
     };
 
-    // دالة لإزالة التأثير
     const removeFocusEffect = () => {
         formContainer.classList.remove('form--focus--effect');
         formContainer.classList.add('form--chat--active');
@@ -37,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // حدث التركيز
     inputField.addEventListener('focus', () => {
         applyFocusEffect();
     });
@@ -50,12 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
         removeFocusEffect();
     });
 
-    // حدث فقدان التركيز
     inputField.addEventListener('blur', () => {
         removeFocusEffect();
     });
 
-    // حدث الكتابة (لتأكيد أن الحقل لا يزال في حالة التركيز)
     inputField.addEventListener('input', () => {
         if (document.activeElement === inputField) {
             applyFocusEffect();
@@ -71,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 sideBar.addEventListener('click', () => {
     const isSide = side.classList.contains('sidebar__hidden');
-    // const isSideMob = navBar;
     if (isSide) {
         navBar.classList.add('nav__hidden');
         const FormSection = document.querySelector(".form_container");
@@ -133,6 +127,9 @@ logoSide.addEventListener('click', () => {
 });
 
 
+
+
+
 const promptInput = document.querySelector('input#prompt__deepseek');
 const btn = document.querySelector('div.prompt__btn button');
 const sendBtn = document.querySelector('button svg.send--btn');
@@ -148,6 +145,8 @@ promptInput.addEventListener('input', () => {
         sendBtn.classList.add('send--btn');
     }
 });
+
+
 
 const chatOne = document.querySelector('div.chatOne');
 const chatTwo = document.querySelector('div.chatTwo');
@@ -172,28 +171,10 @@ const profilePic = document.getElementById('img__prof');
 const profileSec = document.getElementById('divOne');
 const profileOptions = document.querySelectorAll('.clickOptions');
 
-// profilePic.addEventListener('click', () => {
-//     profileOptions.forEach(option => {
-//         if (option.style.opacity === '0') {
-//             option.style.opacity = '1';
-//         } else {
-//             option.style.opacity = '0';
-//         }
-//     });
-// });
-
-// profileSec.addEventListener('click', () => {
-//     profileOptions.forEach(option => {
-//         if (option.style.opacity === '0') {
-//             option.style.opacity = '1';
-//         } else {
-//             option.style.opacity = '0';
-//         }
-//     });
-// });
 
 
-// وظيفة لإظهار أو إخفاء profileOptions
+
+
 function toggleProfileOptions() {
     profileOptions.forEach(option => {
         if (option.style.opacity === '0') {
@@ -206,29 +187,25 @@ function toggleProfileOptions() {
     });
 }
 
-// إظهار أو إخفاء profileOptions عند النقر على profilePic أو profileSec
 profilePic.addEventListener('click', (event) => {
-    event.stopPropagation(); // منع انتشار الحدث إلى document
+    event.stopPropagation();
     toggleProfileOptions();
 });
 
 profileSec.addEventListener('click', (event) => {
-    event.stopPropagation(); // منع انتشار الحدث إلى document
+    event.stopPropagation(); 
     toggleProfileOptions();
 });
 
-// إخفاء profileOptions عند النقر خارجها
 document.addEventListener('click', (event) => {
     let isClickInside = false;
 
-    // التحقق مما إذا كان النقر داخل أي من عناصر profileOptions أو على profilePic أو profileSec
     profileOptions.forEach(option => {
         if (option.contains(event.target) || event.target === profilePic || event.target === profileSec) {
             isClickInside = true;
         }
     });
 
-    // إذا كان النقر خارج العناصر، قم بإخفاء profileOptions
     if (!isClickInside) {
         profileOptions.forEach(option => {
             option.style.opacity = '0';
@@ -266,7 +243,6 @@ function showTypingEffect(text, messageElement, stopButton) {
             document.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightBlock(block);
 
-                // إضافة زر نسخ
                 if (!block.parentNode.querySelector('.copy-button')) {
                     const copyButton = document.createElement('button');
                     copyButton.classList.add('copy-button');
@@ -285,22 +261,17 @@ function showTypingEffect(text, messageElement, stopButton) {
                 }
             });
 
-            // إضافة label لنوع الكود إذا كان النص يحتوي على كود
             if (parsedText.includes("<pre>")) {
                 const codeBlock = messageElement.querySelector("pre");
                 const codeElement = messageElement.querySelector("code");
 
-                // استخراج لغة الكود من الكلاس
                 const languageClass = codeElement.className.split(' ').find(cls => cls.startsWith('language-'));
                 const language = languageClass ? languageClass.replace('language-', '') : 'Code';
 
-                // إنشاء label
                 if (!codeBlock.querySelector('.code-label')) {
                     const codeLabel = document.createElement("div");
                     codeLabel.classList.add("code-label");
                     codeLabel.textContent = language;
-
-                    // إضافة label فوق الكود
                     codeBlock.insertBefore(codeLabel, codeBlock.firstChild);
                 }
             }
@@ -316,13 +287,13 @@ function showTypingEffect(text, messageElement, stopButton) {
     }, 30);
 }
 
-// إضافة حدث click لزر الإيقاف
+
 stopButton.addEventListener('click', (e) => {
-    e.preventDefault(); // منع السلوك الافتراضي (إرسال النموذج)
+    e.preventDefault(); 
 
     if (typingInterval) {
-        clearInterval(typingInterval); // إيقاف تأثير الكتابة
-        typingInterval = null; // إعادة تعيين المتغير
+        clearInterval(typingInterval); 
+        typingInterval = null; 
         stopButton.style.zIndex = '-1';
         btn.classList.remove('btn__active');
     }
@@ -345,27 +316,15 @@ messageForm.addEventListener('submit', async (e) => {
 
     const welcomeMessageElement = document.querySelector("main div.head");
     welcomeMessageElement.classList.add("hide-header");
-    // chats.classList.add("chat--chat--active");
-    // mainContent.classList.add("edit--nav_fixed");
-    // navBar.classList.add('fixed');
-    // side.classList.add('side__fixed');
-
-    // container.style.transform = 'scale(.7)';
-    // container.classList.add('fixed_pos');
-    // instructions.style.margin = '-20px 0';
-    // instructions.style.transform = 'scale(.7)';
-    // mainContent.classList.add('fixed');
 
     messageForm.reset();
 
-    // إضافة رسالة المستخدم إلى تاريخ المحادثة
     chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
-    // إنشاء رسالة المستخدم في الواجهة
     const userMessageElement = document.createElement("div");
     userMessageElement.classList.add("message", "message--outgoing");
     userMessageElement.innerHTML = `
-        <img class="message__avatar" src="assets/profile.png" alt="User avatar">
+        <span class="text-xl" title="user">🥸</span>
         <div class="message__content">
             <p class="message__text msgg">${userMessage}</p>
         </div>
@@ -374,7 +333,6 @@ messageForm.addEventListener('submit', async (e) => {
 
     chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
 
-    // إرسال تاريخ المحادثة كاملًا إلى الـ API
     const response = await fetch(API_REQUEST_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -384,10 +342,8 @@ messageForm.addEventListener('submit', async (e) => {
     const responseData = await response.json();
     const aiMessage = responseData.candidates[0].content.parts[0].text;
 
-    // إضافة رد الـ AI إلى تاريخ المحادثة
     chatHistory.push({ role: "model", parts: [{ text: aiMessage }] });
 
-    // إنشاء رسالة الـ AI في الواجهة
     const aiMessageElement = document.createElement("div");
     aiMessageElement.classList.add("message", "message--incoming");
     aiMessageElement.innerHTML = `
@@ -434,29 +390,18 @@ const newChatButton = document.getElementById("newChat");
 const newChatSideButton = document.getElementById("newchat__Side");
 
 newChatButton.addEventListener("click", () => {
-    chatHistory = []; // إعادة تعيين تاريخ المحادثة
-    chatHistoryContainer.innerHTML = ""; // مسح المحادثات من الواجهة
-    document.querySelector("main div.head").classList.remove("hide-header"); // إعادة عرض الرسالة الترحيبية
+    chatHistory = []; 
+    chatHistoryContainer.innerHTML = ""; 
+    document.querySelector("main div.head").classList.remove("hide-header"); 
 });
 
 newChatSideButton.addEventListener("click", () => {
-    chatHistory = []; // إعادة تعيين تاريخ المحادثة
-    chatHistoryContainer.innerHTML = ""; // مسح المحادثات من الواجهة
-    document.querySelector("main div.head").classList.remove("hide-header"); // إعادة عرض الرسالة الترحيبية
+    chatHistory = [];
+    chatHistoryContainer.innerHTML = ""; 
+    document.querySelector("main div.head").classList.remove("hide-header"); 
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
-
-    // stopButton.addEventListener('click', (e) => {
-    //     e.preventDefault(); // منع السلوك الافتراضي (إرسال النموذج)
-
-    //     if (typingInterval) {
-    //         clearInterval(typingInterval); // إيقاف تأثير الكتابة
-    //         typingInterval = null; // إعادة تعيين المتغير
-    //         stopButton.style.zIndex = '-1'; // إخفاء زر الإيقاف
-    //     }
-    // });
 
     const observer = new MutationObserver((mutationsList) => {
         for (let mutation of mutationsList) {
@@ -465,54 +410,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (incomingMessage) {
                     stopButton.style.zIndex = '2';
                 }
-                // else if(!showTypingEffect) {
-                //     stopButton.style.zIndex = '-1';
-                // }
             }
         }
     });
 
     observer.observe(chatsSection, { childList: true });
 });
-
-// const clearChatButton = document.getElementById("deleteButton");
-
-// clearChatButton.addEventListener("click", () => {
-//     chatHistoryContainer.innerHTML = ""; // مسح المحادثات
-//     document.body.classList.remove("hide-header"); // إعادة عرض الرسالة الترحيبية
-// });
-
-
-// const showTypingEffect = (rawText, htmlText, messageElement, incomingMessageElement, skipEffect = false) => {
-//     const copyIconElement = incomingMessageElement.querySelector(".message__icon");
-//     copyIconElement.classList.add("hide"); // إخفاء زر النسخ مؤقتًا
-
-//     if (skipEffect) {
-//         // إذا كان التأثير غير مطلوب، عرض النص مباشرة
-//         messageElement.innerHTML = htmlText;
-//         hljs.highlightAll(); // تنسيق الكود البرمجي إذا وجد
-//         addCopyButtonToCodeBlocks(); // إضافة زر النسخ
-//         copyIconElement.classList.remove("hide"); // إظهار زر النسخ
-//         isGeneratingResponse = false;
-//         return;
-//     }
-
-//     const wordsArray = rawText.split(' '); // تقسيم النص إلى كلمات
-//     let wordIndex = 0;
-
-//     const typingInterval = setInterval(() => {
-//         messageElement.innerText += (wordIndex === 0 ? '' : ' ') + wordsArray[wordIndex++]; // إضافة كلمة واحدة في كل مرة
-//         if (wordIndex === wordsArray.length) {
-//             clearInterval(typingInterval); // إيقاف التأثير عند انتهاء النص
-//             isGeneratingResponse = false;
-//             messageElement.innerHTML = htmlText; // عرض النص كاملًا
-//             hljs.highlightAll(); // تنسيق الكود البرمجي إذا وجد
-//             addCopyButtonToCodeBlocks(); // إضافة زر النسخ
-//             copyIconElement.classList.remove("hide"); // إظهار زر النسخ
-//         }
-//     }, 75); // سرعة الكتابة (كل 75 مللي ثانية)
-// };
-
 
 const requestApiResponse = async (incomingMessageElement) => {
     const messageTextElement = incomingMessageElement.querySelector(".message__text");
@@ -544,3 +447,34 @@ const requestApiResponse = async (incomingMessageElement) => {
         incomingMessageElement.classList.remove("message--loading");
     }
 };
+
+
+
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const body = document.body;
+
+// تحقق من الوضع الحالي من localStorage
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+    body.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'light') {
+        themeIcon.classList.remove('bx-moon');
+        themeIcon.classList.add('bx-sun');
+    }
+}
+
+// تغيير الوضع عند النقر على الزر
+themeToggle.addEventListener('click', () => {
+    if (body.getAttribute('data-theme') === 'light') {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('bx-sun');
+        themeIcon.classList.add('bx-moon');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        body.setAttribute('data-theme', 'light');
+        themeIcon.classList.remove('bx-moon');
+        themeIcon.classList.add('bx-sun');
+        localStorage.setItem('theme', 'light');
+    }
+});
