@@ -6,12 +6,12 @@ const relnav = document.querySelector('.rel-nav');
 const navBarIcon = document.querySelector('.rel-nav .bar-icon svg');
 const logoSide = document.querySelector('div.logo__side');
 const overlay = document.getElementById('overlay');
+const disclaim = document.querySelector('.prompt__disclaim');
 
 document.addEventListener('DOMContentLoaded', () => {
     const inputField = document.getElementById('prompt__deepseek');
     const formContainer = document.querySelector('.form_container');
     const isChat = formContainer.classList.includes('form--chat--active');
-    const disclaim = document.querySelector('.prompt__disclaim');
     const formm = document.querySelector('.form_container');
     const welcomeMessageElement = document.querySelector("main div.head");
     // const visibleChat = document.querySelector("main .chats .message--incoming");
@@ -66,10 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 sideBar.addEventListener('click', () => {
     const isSide = side.classList.contains('sidebar__hidden');
+
     if (isSide) {
         navBar.classList.add('nav__hidden');
         const FormSection = document.querySelector(".form_container");
-        FormSection.classList.add('form--nav--active')
+        FormSection.classList.add('form--nav--active');
+        disclaim.classList.add('nav--active');
         side.classList.remove('sidebar__hidden');
     }
     if (navBar.style.transform === 'translate(-100%)') {
@@ -193,7 +195,7 @@ profilePic.addEventListener('click', (event) => {
 });
 
 profileSec.addEventListener('click', (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     toggleProfileOptions();
 });
 
@@ -386,69 +388,6 @@ messageForm.addEventListener('submit', async (e) => {
 });
 
 
-const newChatButton = document.getElementById("newChat");
-const newChatSideButton = document.getElementById("newchat__Side");
-
-newChatButton.addEventListener("click", () => {
-    chatHistory = []; 
-    chatHistoryContainer.innerHTML = ""; 
-    document.querySelector("main div.head").classList.remove("hide-header"); 
-});
-
-newChatSideButton.addEventListener("click", () => {
-    chatHistory = [];
-    chatHistoryContainer.innerHTML = ""; 
-    document.querySelector("main div.head").classList.remove("hide-header"); 
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    const observer = new MutationObserver((mutationsList) => {
-        for (let mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                const incomingMessage = chatsSection.querySelector('.message.message--incoming');
-                if (incomingMessage) {
-                    stopButton.style.zIndex = '2';
-                }
-            }
-        }
-    });
-
-    observer.observe(chatsSection, { childList: true });
-});
-
-const requestApiResponse = async (incomingMessageElement) => {
-    const messageTextElement = incomingMessageElement.querySelector(".message__text");
-
-    try {
-        const response = await fetch(API_REQUEST_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                contents: [{ role: "user", parts: [{ text: currentUserMessage }] }]
-            }),
-        });
-
-        const responseData = await response.json();
-        if (!response.ok) throw new Error(responseData.error.message);
-
-        const responseText = responseData?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!responseText) throw new Error("Invalid API response.");
-
-        const parsedApiResponse = marked.parse(responseText);
-        const rawApiResponse = responseText;
-
-        showTypingEffect(rawApiResponse, parsedApiResponse, messageTextElement, incomingMessageElement);
-    } catch (error) {
-        isGeneratingResponse = false;
-        messageTextElement.innerText = error.message;
-        messageTextElement.closest(".message").classList.add("message--error");
-    } finally {
-        incomingMessageElement.classList.remove("message--loading");
-    }
-};
-
-
 
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
@@ -476,5 +415,31 @@ themeToggle.addEventListener('click', () => {
         themeIcon.classList.remove('bx-moon');
         themeIcon.classList.add('bx-sun');
         localStorage.setItem('theme', 'light');
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const scrollDownButton = document.querySelector('.scroll-down');
+    const chatSection = document.querySelector('.chats');
+
+    if (chatSection && scrollDownButton) {
+        chatSection.addEventListener('scroll', function () {
+            if (chatSection.scrollHeight > 0 && chatSection.scrollTop < 2) {
+                scrollDownButton.style.display = 'block'; // إظهار الزر عند التمرير لأسفل
+            } else {
+                scrollDownButton.style.display = 'none'; // إخفاء الزر عند التمرير للأعلى
+            }
+        });
+
+        scrollDownButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            const allDivs = document.querySelectorAll(".message");
+            const lastDiv = allDivs[allDivs.length - 1];
+
+            if (lastDiv) {
+                lastDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     }
 });
