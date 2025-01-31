@@ -1,4 +1,3 @@
-
 :root {
     --primary-color: rgb(77, 107, 254);
     --secondary-color: rgb(33, 35, 39);
@@ -6,6 +5,7 @@
     --text-color: rgb(228, 228, 231);
     --text-secondary-color: rgb(186, 186, 193);
     --tx-color: rgb(255, 255, 255);
+    --btn-svg-color: rgb(255, 255, 255);
     --form-bg-color: rgb(64, 64, 69);
     --placeholder-color: rgb(161, 161, 170);
     --icon-color: rgb(205, 212, 223);
@@ -27,9 +27,12 @@
     --code-color: rgb(212, 212, 212);
     --userchat-bg-color: #414158;
     --client-bg-color: #38384b;
-    --prf-options-bg:rgb(76 76 83);
+    --prf-options-bg: rgb(76 76 83);
     --more-options-bg: #3c3e42;
     --more-options: rgb(255, 255, 255);
+    --pre-header: rgb(255 255 255);
+    --scroll-down: #d8d6d6;
+    --scroll-down-bg: #2b2a2a;
 }
 
 
@@ -40,6 +43,7 @@
     --text-color: rgb(33, 35, 39);
     --text-secondary-color: rgb(100, 100, 100);
     --tx-color: rgb(0, 0, 0);
+    --btn-svg-color: rgb(255, 255, 255);
     --btn-tx-color: rgb(255, 255, 255);
     --form-bg-color: rgb(255, 255, 255);
     --placeholder-color: rgb(161, 161, 170);
@@ -58,13 +62,16 @@
     --bx-shadow: rgba(0, 0, 0, 0.1);
     --overlay-color: rgba(0, 0, 0, 0.5);
     --anchor-color: rgb(30, 144, 255);
-    --pre-color: rgb(240, 240, 240);
-    --code-color: rgb(33, 35, 39);
-    --userchat-bg-color:#e3e3e6;
+    --pre-color: rgb(189 189 189);
+    --code-color: rgb(134 140 151);
+    --userchat-bg-color: #e3e3e6;
     --client-bg-color: #e5e5e7;
-    --prf-options-bg:rgb(170, 170, 182);
-    --more-options-bg: #a1a4a9 ;
+    --prf-options-bg: rgb(170, 170, 182);
+    --more-options-bg: #a1a4a9;
     --more-options: rgb(255, 255, 255);
+    --pre-header: rgb(255 255 255);
+    --scroll-down: #2b2a2a;
+    --scroll-down-bg: #d8d6d6;
 }
 
 /* زر التبديل */
@@ -90,7 +97,7 @@
     text-decoration: none;
     list-style: none;
     font-family: "Cairo", sans-serif;
-    transition: all .3s ease;
+    transition: all .2s ease;
 }
 
 html {
@@ -441,12 +448,11 @@ svg {
 
 .prompt__deepseek input {
     color: var(--text-color);
-    background-color: var(--form-bg-color);
+    background-color: transparent;
     border: none;
     outline: none;
     border-radius: 20px;
     font-size: 1.4rem;
-    /* margin: 10px 0; */
     padding: 10px;
     width: 1050px;
     height: 90px;
@@ -475,6 +481,13 @@ svg {
     height: 180px;
     box-shadow: 10px 5px 10px var(--bx-shadow);
     border: 3px solid #38384b15;
+    position: relative;
+}
+
+.prompt__options {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .form_container.fixed_pos {
@@ -566,7 +579,7 @@ div.prompt__btn button {
 }
 
 .stop--btn {
-    background: var(--tx-color);
+    background: var(--btn-svg-color);
     border-radius: 2px;
     flex-shrink: 0;
     width: 17px;
@@ -606,6 +619,9 @@ main .chats {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+    /* position: relative; */
 }
 
 main .chats::-webkit-scrollbar {
@@ -651,6 +667,7 @@ main .chats .message__content {
 p.message__text {
     color: var(--tx-color);
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
     margin-top: 10px;
     font-size: 25px;
     letter-spacing: 1px;
@@ -761,10 +778,13 @@ main .chats .message__text .msgg pre {
 }
 
 .profPic .text-xl,
-.img-prof .text-xl {
+.img-prof .text-xl,
+.img__prof .text-xl {
     font-size: 2rem;
     line-height: 2rem;
+    cursor: pointer;
 }
+
 .message .text-xl {
     font-size: 2rem;
     line-height: 2rem;
@@ -777,6 +797,7 @@ main .chats .message__text .msgg pre {
     transition: all 0.3s ease;
     margin-left: 10px;
     text-align: center;
+    cursor: default;
 }
 
 main .chats .message__text .msgg code {
@@ -799,7 +820,7 @@ main .chats .message__text .msgg code {
     text-transform: uppercase;
     letter-spacing: 2px;
     border: none;
-    color: var(--tx-color);
+    color: var(--pre-header);
     padding: 0.5rem;
 }
 
@@ -810,7 +831,7 @@ main .chats .message__text .msgg code {
     background-color: var(--scrollbar-track-color);
     border: none;
     outline: none;
-    color: var(--tx-color);
+    color: var(--pre-header);
     border-radius: 0.25rem;
     cursor: pointer;
     font-size: 25px;
@@ -835,7 +856,8 @@ main .chats .message__text .msgg code {
 }
 
 main .chats .message__text .msgg p {
-    width: 100%;
+    width: 120%;
+    margin-block: -20px;
 }
 
 main .chats .message__text .msgg a {
@@ -851,11 +873,12 @@ main .chats .message__text .msgg ul {
 }
 
 main .chats .message__text .msgg li {
-    margin-block: -15px;
+    margin-block: -20px;
 }
 
 main .chats .message__text .msgg ol {
     margin-left: 40px;
+    margin-block: -20px;
 }
 
 main .chats .message__text .msgg strong {
@@ -880,7 +903,7 @@ main .chats .message__text .msgg td {
     gap: 8px;
     margin-top: 10px;
     position: absolute;
-    bottom: 15px;
+    bottom: 0px;
 }
 
 .copy--button,
@@ -892,7 +915,7 @@ main .chats .message__text .msgg td {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--btn-secondary-color);
+    color: rgb(161 166 175);
     transition: color 0.3s ease;
     font-size: 20px;
 }
@@ -997,11 +1020,17 @@ main .chats .message__text .msgg td {
 
     .form_container {
         height: 95px;
-        width: 105%;
+        width: 110%;
         position: fixed;
         bottom: 9%;
         left: -2.5%;
         transform: scale(.8);
+    }
+
+    .prompt__options {
+        position: absolute;
+        bottom: -70%;
+        right: 0;
     }
 
     .prompt__disclaim {
@@ -1011,6 +1040,7 @@ main .chats .message__text .msgg td {
         left: 35%;
         margin-top: 1rem;
     }
+
     .head.head--focus--effect {
         bottom: -20px !important;
     }
@@ -1023,7 +1053,6 @@ main .chats .message__text .msgg td {
     .container {
         width: 100%;
         height: 100vh;
-
     }
 
     .head {
@@ -1073,11 +1102,12 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 98vh;
+        max-height: 95vh;
         width: 150%;
         transform: scale(.9);
-        top: -30%;
+        top: -26%;
         left: -25%;
+        overflow-x: hidden;
     }
 
     main .chats .message__text .msgg pre {
@@ -1112,7 +1142,6 @@ main .chats .message__text .msgg td {
         top: 0;
         z-index: 1000;
         width: 280px;
-        height: 130%;
     }
 
     .rel-nav {
@@ -1131,7 +1160,7 @@ main .chats .message__text .msgg td {
         width: 30px;
         cursor: pointer;
     }
-    
+
     .rel-nav .contain {
         display: flex;
         justify-content: space-between;
@@ -1179,6 +1208,12 @@ main .chats .message__text .msgg td {
         bottom: 5%;
         left: 1.5%;
         transform: scale(.9);
+    }
+
+    .prompt__options {
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
     .prompt__disclaim {
@@ -1283,7 +1318,6 @@ main .chats .message__text .msgg td {
         top: 0;
         z-index: 1000;
         width: 280px;
-        height: 113vh;
     }
 
     .rel-nav {
@@ -1356,6 +1390,12 @@ main .chats .message__text .msgg td {
         transform: scale(.9);
     }
 
+    .prompt__options {
+        position: absolute;
+        bottom: -15%;
+        right: 0;
+    }
+
     .prompt__disclaim {
         font-size: 0.6rem;
         position: fixed;
@@ -1419,7 +1459,7 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 90vh;
+        max-height: 95vh;
         width: 150%;
         transform: scale(.9);
         top: -26%;
@@ -1530,6 +1570,12 @@ main .chats .message__text .msgg td {
         left: 1.5%;
     }
 
+    .prompt__options {
+        position: absolute;
+        bottom: -5%;
+        right: 0;
+    }
+
     .prompt__disclaim {
         font-size: 0.6rem;
         position: fixed;
@@ -1593,11 +1639,12 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 95vh;
+        max-height: 85vh;
         width: 120%;
         transform: scale(1.1);
         top: -100px;
         left: -50px;
+        overflow-x: hidden;
     }
 
     main .chats .message__text .msgg pre {
@@ -1673,6 +1720,12 @@ main .chats .message__text .msgg td {
         bottom: 5%;
         left: 1.5%;
         transform: scale(.97);
+    }
+
+    .prompt__options {
+        position: absolute;
+        bottom: -5%;
+        right: 0;
     }
 
     .prompt__disclaim {
@@ -1758,7 +1811,7 @@ main .chats .message__text .msgg td {
     }
 
     main .chats {
-        max-height: 87vh;
+        max-height: 75vh;
         width: 110%;
         transform: scale(1.2);
         position: absolute;
@@ -1915,7 +1968,11 @@ main .chats .message__text .msgg td {
     .prompt__options {
         width: 100%;
         height: 90px;
+        position: absolute;
+        bottom: -5%;
+        right: 0;
     }
+
 
     main .chats {
         max-height: 75vh;
@@ -1968,7 +2025,6 @@ main .chats .message__text .msgg td {
         position: absolute;
         top: 0;
         z-index: 801;
-        height: 105vh;
         width: 280px;
     }
 
@@ -1976,7 +2032,6 @@ main .chats .message__text .msgg td {
         position: fixed;
         top: 0;
         width: 5%;
-        height: 105vh;
         z-index: 600;
     }
 
@@ -2055,6 +2110,9 @@ main .chats .message__text .msgg td {
     .prompt__options {
         width: 100%;
         height: 90px;
+        position: absolute;
+        bottom: -5%;
+        right: 0;
     }
 
     #overlay {
@@ -2071,7 +2129,7 @@ main .chats .message__text .msgg td {
 
 
     main .chats {
-        max-height: 70vh;
+        max-height: 60vh;
         width: 100%;
         transform: scale(1.2);
         position: absolute;
@@ -2153,8 +2211,50 @@ main .chats .message__text .msgg td {
     .prompt__disclaim {
         font-size: 0.85rem;
         position: fixed;
-        bottom: 5%;
-        left: 48%;
+        bottom: 1%;
+        left: 53%;
         margin-top: 1rem;
     }
+
+    .prompt__disclaim.nav--active {
+        font-size: 0.85rem;
+        position: fixed;
+        bottom: 1%;
+        left: 46%;
+        margin-top: 1rem;
+    }
+}
+
+.scroll-down {
+    position: fixed;
+    bottom: 34%;
+    left: 59.5%;
+    margin-left: -16px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #5a5959;
+    background-color: var(--scroll-down-bg);
+    background-size: 14px auto;
+    border-radius: 50%;
+    z-index: 2;
+    -webkit-animation: bounce 2s infinite 2s;
+    animation: bounce 2s infinite 2s;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    transform: scale(1);
+    display: none; 
+}
+
+.scroll-down:before {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 7px);
+    transform: rotate(-45deg);
+    display: block;
+    width: 12px;
+    height: 12px;
+    content: "";
+    border: 2px solid var(--scroll-down);
+    border-width: 0px 0 2px 2px;
 }
