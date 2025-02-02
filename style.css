@@ -938,6 +938,189 @@ main .chats .message__text .msgg td {
 }
 
 
+.scroll-down {
+    position: fixed;
+    bottom: 34%;
+    left: 59.5%;
+    margin-left: -16px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #5a5959;
+    background-color: var(--scroll-down-bg);
+    background-size: 14px auto;
+    border-radius: 50%;
+    z-index: 2;
+    -webkit-animation: bounce 2s infinite 2s;
+    animation: bounce 2s infinite 2s;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    transform: scale(1);
+    display: none;
+}
+
+.scroll-down:before {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 7px);
+    transform: rotate(-45deg);
+    display: block;
+    width: 12px;
+    height: 12px;
+    content: "";
+    border: 2px solid var(--scroll-down);
+    border-width: 0px 0 2px 2px;
+}
+
+.toast-container {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.toast {
+    position: relative;
+    width: 320px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow-x: hidden;
+    overflow: hidden;
+    align-items: center;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.toast.active {
+    transform: translateX(0%);
+}
+
+.toast .toast-content {
+    display: flex;
+    align-items: center;
+}
+
+.toast-content .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    min-width: 45px;
+    color: #fff;
+}
+.toast-content .icon svg {
+    width: 35px;
+    height: 35px;
+}
+
+.toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+    font-family: "Outfit", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+}
+
+.toast .bx-x {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.toast .bx-x:hover {
+    opacity: 1;
+}
+
+.toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+}
+
+.toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+}
+
+.progress.active:before {
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        right: 100%;
+    }
+}
+
+/* Toast Type Colors */
+.toast.success .icon {
+    color: rgb(25 135 84);
+    fill: rgb(25 135 84);
+}
+
+.toast.error .icon {
+    color: rgb(220 53 69);
+    fill: rgb(220 53 69);
+}
+
+.toast.warning .icon {
+    color: rgb(255 193 7);
+    fill: rgb(255 193 7);
+}
+
+.toast.info .icon {
+    color: rgb(13 202 240);
+    fill: rgb(13 202 240);
+}
+
+.toast.success .progress:before {
+    background: rgb(25 135 84);
+}
+
+.toast.error .progress:before {
+    background: rgb(220 53 69);
+}
+
+.toast.warning .progress:before {
+    background: rgb(255 193 7);
+}
+
+.toast.info .progress:before {
+    background: rgb(13 202 240);
+}
+
+.toast-content i {
+    font-size: 35px;
+}
 
 
 
@@ -2004,6 +2187,11 @@ main .chats .message__text .msgg td {
         bottom: -20px !important;
     }
 
+    .scroll-down {
+        bottom: 34%;
+        left: 50%;
+    }
+
 }
 
 
@@ -2223,38 +2411,4 @@ main .chats .message__text .msgg td {
         left: 46%;
         margin-top: 1rem;
     }
-}
-
-.scroll-down {
-    position: fixed;
-    bottom: 34%;
-    left: 59.5%;
-    margin-left: -16px;
-    display: block;
-    width: 32px;
-    height: 32px;
-    border: 1px solid #5a5959;
-    background-color: var(--scroll-down-bg);
-    background-size: 14px auto;
-    border-radius: 50%;
-    z-index: 2;
-    -webkit-animation: bounce 2s infinite 2s;
-    animation: bounce 2s infinite 2s;
-    -webkit-transition: all .2s ease-in;
-    transition: all .2s ease-in;
-    transform: scale(1);
-    display: none; 
-}
-
-.scroll-down:before {
-    position: absolute;
-    top: calc(50% - 8px);
-    left: calc(50% - 7px);
-    transform: rotate(-45deg);
-    display: block;
-    width: 12px;
-    height: 12px;
-    content: "";
-    border: 2px solid var(--scroll-down);
-    border-width: 0px 0 2px 2px;
 }
