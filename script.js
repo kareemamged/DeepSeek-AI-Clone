@@ -523,9 +523,16 @@ function updateNetworkStatus() {
     }, 100); 
 };
 
-// تحديث الحالة عند تحميل الصفحة
+
 window.addEventListener("load", updateNetworkStatus);
 
-// تحديث الحالة عند تغيير حالة الاتصال
+
 window.addEventListener("online", updateNetworkStatus);
 window.addEventListener("offline", updateNetworkStatus);
+
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log("Service Worker Registered ✅"))
+        .catch(err => console.log("Service Worker Failed ❌", err));
+}
