@@ -224,8 +224,8 @@ document.addEventListener('click', (event) => {
 
 
 const messageForm = document.querySelector(".prompt__form");
-const GOOGLE_API_KEY = "AIzaSyCz5Il-ZtclMhdPzOubaPQySPR1X43co30";
-const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GOOGLE_API_KEY}`;
+const GOOGLE_API_KEY = "AIzaSyAP0ZPOvbNNleycCmQopCUgXFGvqDKBTjE";
+const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GOOGLE_API_KEY}`;
 const chatHistoryContainer = document.querySelector("section.chats");
 const chatsSection = document.querySelector('section.chats');
 const stopButton = document.querySelector('.prompt__btn button.stop__btn');
